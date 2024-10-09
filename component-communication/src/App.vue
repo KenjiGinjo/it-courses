@@ -1,47 +1,40 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
+<!-- App.vue -->
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div id="app">
+    <h1>待办事项应用</h1>
+    <AddToDo @add-todo="addTodoItem" />
+    <ToDoList :todos="todoList" />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script>
+import AddToDo from "./components/AddToDo.vue";
+import ToDoList from "./components/ToDoList.vue";
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+export default {
+  name: "App",
+  components: {
+    AddToDo,
+    ToDoList,
+  },
+  data() {
+    return {
+      todoList: [], // 待办事项列表
+    };
+  },
+  methods: {
+    addTodoItem(newTodo) {
+      // 接收来自 AddToDo 组件的新待办事项，并添加到列表中
+      this.todoList.push(newTodo);
+    },
+  },
+};
+</script>
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+<style>
+/* 可选的样式 */
+#app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
 }
 </style>
