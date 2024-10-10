@@ -11,10 +11,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { createId } from '@paralleldrive/cuid2'
-import type { TODO_List } from '@/types';
+import type { TodoItem } from '@/types';
 
 const emits = defineEmits<{
-  (e: "add-todo", newTodo: TODO_List): void;
+  (e: "add-todo", newTodo: TodoItem): void;
 }>();
 
 const newTodo = ref<string>('');
@@ -25,7 +25,8 @@ function submitTodo() {
 
     emits('add-todo', {
       id,
-      text: newTodo.value.trim()
+      text: newTodo.value.trim(),
+      completed: false
     });
 
     newTodo.value = '';

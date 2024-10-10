@@ -1,4 +1,3 @@
-<!-- App.vue -->
 <template>
 
   <h1>待办事项应用</h1>
@@ -10,7 +9,6 @@
 
     <TODO_LIST :list="todoList" />
 
-    <button @click="clearAll" style="width: 90px">清空全部</button>
 
   </div>
 
@@ -20,17 +18,13 @@
 import { ref } from 'vue'
 import TODO_ADD from "./components/todo-add.vue"
 import TODO_LIST from "./components/todo-list.vue";
-import type { TODO_List } from './types';
+import type { TodoItem } from './types';
 
 
-const todoList = ref<TODO_List[]>([]);
+const todoList = ref<TodoItem[]>([]);
 
-function addTodoItem(newTodo: TODO_List) {
+function addTodoItem(newTodo: TodoItem) {
   todoList.value.push(newTodo);
-}
-
-function clearAll() {
-  todoList.value = []
 }
 
 </script>
