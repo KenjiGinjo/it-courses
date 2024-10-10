@@ -3,7 +3,3 @@ export type TodoItem = {
     text: string;
     completed: boolean;
 };
-
-export interface Events {
-    'todo-updated': TodoItem[];
-}
