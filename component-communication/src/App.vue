@@ -1,40 +1,45 @@
 <!-- App.vue -->
 <template>
-  <div id="app">
-    <h1>待办事项应用</h1>
-    <AddToDo @add-todo="addTodoItem" />
-    <ToDoList :todos="todoList" />
+
+  <h1>待办事项应用</h1>
+
+  <div class="todo-app">
+    <p>组件A</p>
+
+    <TODO_ADD @add-todo="addTodoItem" />
+
+    <TODO_LIST :list="todoList" />
+
+    <button @click="clearAll" style="width: 90px">清空全部</button>
+
   </div>
+
 </template>
 
-<script>
-import AddToDo from "./components/AddToDo.vue";
-import ToDoList from "./components/ToDoList.vue";
+<script lang="ts" setup>
+import { ref } from 'vue'
+import TODO_ADD from "./components/todo-add.vue"
+import TODO_LIST from "./components/todo-list.vue";
+import type { TODO_List } from './types';
 
-export default {
-  name: "App",
-  components: {
-    AddToDo,
-    ToDoList,
-  },
-  data() {
-    return {
-      todoList: [], // 待办事项列表
-    };
-  },
-  methods: {
-    addTodoItem(newTodo) {
-      // 接收来自 AddToDo 组件的新待办事项，并添加到列表中
-      this.todoList.push(newTodo);
-    },
-  },
-};
+
+const todoList = ref<TODO_List[]>([]);
+
+function addTodoItem(newTodo: TODO_List) {
+  todoList.value.push(newTodo);
+}
+
+function clearAll() {
+  todoList.value = []
+}
+
 </script>
 
 <style>
-/* 可选的样式 */
-#app {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+.todo-app {
+  border: 1px solid black;
+  padding: 16px;
+  color: black;
+  margin-top: 20px;
 }
 </style>
