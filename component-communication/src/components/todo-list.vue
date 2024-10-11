@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { TODO_List } from '@/types';
+import type { TodoItem } from '@/types';
 
 const props = defineProps<{
-  list: TODO_List[]
+  list: TodoItem[]
 }>()
 
 
